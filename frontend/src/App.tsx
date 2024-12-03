@@ -11,13 +11,13 @@ const App: React.FC = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [books, setBooks] = useState<Book[]>([]);
-  const [borrowedBooks, setBorrowedBooks] = useState<Book[]>([]); // Livres empruntés par le client
+  const [borrowedBooks, setBorrowedBooks] = useState<Book[]>([]); // livre emprunte par le client
   const [newBook, setNewBook] = useState<Book>({
     title: "",
     author: "",
     synopsis: "",
   });
-  const [isLoggedIn, setIsLoggedIn] = useState(false); // Pour vérifier si l'utilisateur est connecté
+  const [isLoggedIn, setIsLoggedIn] = useState(false); // verifie si l'utilisateur est connecte
 
   // Ajouter un livre
   const handleAddBook = () => {
@@ -27,7 +27,7 @@ const App: React.FC = () => {
     }
 
     setBooks([...books, newBook]);
-    setNewBook({ title: "", author: "", synopsis: "" }); // Réinitialiser le formulaire
+    setNewBook({ title: "", author: "", synopsis: "" }); // reinitialise le formulaire
   };
 
   // Supprimer un livre
@@ -60,7 +60,7 @@ const App: React.FC = () => {
       (userType === "libraire" && email === "libraire@example.com" && password === "libraire123") ||
       (userType === "client" && email === "client@example.com" && password === "client123")
     ) {
-      setIsLoggedIn(true); // Marquer comme connecté
+      setIsLoggedIn(true); // marque comme connecte
       alert("Connexion réussie !");
     } else {
       alert("Identifiants invalides.");
@@ -69,15 +69,15 @@ const App: React.FC = () => {
 
   // Déconnexion
   const handleLogout = () => {
-    setUserType(null); // Réinitialiser l'état de l'utilisateur
+    setUserType(null); // reinitialise l'etat de l'utilisateur
     setEmail("");
     setPassword("");
-    setIsLoggedIn(false); // Marquer comme déconnecté
+    setIsLoggedIn(false); // marque comme deconnecte
   };
 
   return (
     <div>
-      {/* Sélection de l'utilisateur (Libraire / Client) */}
+      {/* choix : libraire, client */}
       {!userType && !isLoggedIn ? (
         <div>
           <button onClick={() => setUserType("libraire")}>Libraire</button>
@@ -85,7 +85,7 @@ const App: React.FC = () => {
         </div>
       ) : (
         <div>
-          {/* Formulaire de connexion (affiché seulement si un utilisateur est sélectionné) */}
+          {/* formulaire de connexion */}
           {!isLoggedIn && userType && (
             <div>
               <h2>Connexion pour {userType}</h2>
@@ -105,15 +105,14 @@ const App: React.FC = () => {
             </div>
           )}
 
-          {/* Si l'utilisateur est connecté, afficher les options spécifiques */}
+          {/* si utilisateur connecte, afficher les options specifiques */}
           {isLoggedIn && (
             <div>
               <h1>Bienvenue, {userType} !</h1>
 
-              {/* Bouton de déconnexion */}
               <button onClick={handleLogout}>Déconnexion</button>
 
-              {/* Affichage des livres */}
+              {/* affichage des livres */}
               <h2>Liste des livres :</h2>
               {books.length > 0 ? (
                 <ul>
@@ -137,7 +136,7 @@ const App: React.FC = () => {
                 <p>Aucun livre pour le moment.</p>
               )}
 
-              {/* Formulaire pour ajouter un livre (visible uniquement pour le libraire) */}
+              {/* formulaire pour ajouter un livre (visible uniquement pour le libraire) */}
               {userType === "libraire" && (
                 <div>
                   <h2>Ajouter un livre</h2>
@@ -168,7 +167,7 @@ const App: React.FC = () => {
                 </div>
               )}
 
-              {/* Liste des livres empruntés (visible uniquement pour le client) */}
+              {/* liste des livres empruntes (visible uniquement pour le client) */}
               {userType === "client" && borrowedBooks.length > 0 && (
                 <div>
                   <h2>Vos livres empruntés :</h2>
