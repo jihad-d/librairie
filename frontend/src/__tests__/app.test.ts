@@ -3,7 +3,7 @@ import { render, screen, fireEvent } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import App from '../App';
 
-// test('should render login form for client', () => {
+// test('affiche le formulaire pour client', () => {
 //   render(<App />);
 
 //   const libraireButton = screen.getByText(/Libraire/i);
